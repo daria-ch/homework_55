@@ -27,12 +27,12 @@
 
 .burger-div{
   width: 550px;
-  height: 600px;
+  height: auto;
   border: 1px solid #000;
 }
 .ingredients-div{
   width: 550px;
-  height: 600px;
+  height: auto;
   border: 1px solid #000;
   padding: 0 20px;
 }

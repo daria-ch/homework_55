@@ -3,19 +3,19 @@ import './App.css';
 import Burger from "./Components/Burger/Burger";
 import Ingredients from "./Components/Ingredients/Ingredients";
 import IngredientsList from "./Components/Ingredients/IngredientsList";
+import IngredientImage from "./Components/Ingredients/IngredientImage";
 
 
 class App extends Component {
     state = {
         ingredients: [
-            {name: 'Meat', count: 0},
-            {name: 'Cheese', count: 0},
-            {name: 'Salad', count: 0},
             {name: 'Bacon', count: 0},
+            {name: 'Salad', count: 0},
+            {name: 'Cheese', count: 0},
+            {name: 'Meat', count: 0},
         ]
     };
     price = 20;
-
 
     addPrice = () => {
         let totalPrice = 0;
@@ -53,6 +53,19 @@ class App extends Component {
             textTransform: 'uppercase',
             fontWeight: 'bold'
         };
+        const ingredients = this.state.ingredients.map(ingredient => {
+            const ingredientsComponents = [];
+            for (let i = 0; i < ingredient.count; i++) {
+                ingredientsComponents.push(
+                    <IngredientImage
+                        key={ingredient.name + i}
+                        ingredientClassname={ingredient.name}
+                    />
+                )
+            }
+            return ingredientsComponents;
+        }).flat();
+
         const ingredientsList = Ingredients.map(ing => {
             return (
                 <IngredientsList
@@ -74,6 +87,7 @@ class App extends Component {
                 <div className="burger-div">
                     <p style={textStyle}>Burger</p>
                     <Burger
+                        ingredients={ingredients}
                         price={this.price}
                     />
                 </div>
